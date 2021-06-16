@@ -1,19 +1,12 @@
 <template>
-  <div id="404">
+  <div class="not-found">
     <h1>404 Error</h1>
     <h3>Something went wrong</h3>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "NotFound",
+};
 </script>
-
-<style>
-#404 {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-</style>
