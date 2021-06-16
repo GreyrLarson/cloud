@@ -1,6 +1,6 @@
 <template>
-  <div class="nav">
-    <b-navbar class="nav" toggleable="lg" type="dark" variant="faded">
+  <div class="header">
+    <b-navbar toggleable="lg" type="dark" variant="faded">
       <b-navbar-brand to="/" src="images/logo.png" alt="logo"
         ><img id="logo" src="images/logo.png" alt="logo"
       /></b-navbar-brand>
@@ -9,6 +9,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
+          <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/about">About</b-nav-item>
           <b-nav-item to="/map">Map</b-nav-item>
           <b-nav-item to="/wiki">Wiki</b-nav-item>
@@ -40,14 +41,58 @@ export default {
 #logo {
   max-height: 10vh;
   width: auto;
-  color: white;
 }
 
-.nav {
-  height: fit-content;
+a.nav-link {
+  color: rgba(255, 255, 255, 0.87) !important;
+  font-size: 2.75vh;
+  margin: 1px 0.25em;
+  padding: 0.5em 0.75em !important;
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 2px;
+}
+
+a.dropdown-item {
+  color: rgba(255, 255, 255, 0.87) !important;
+  font-size: 2.5vh;
+  margin-bottom: 0.25em;
+}
+
+a.dropdown-item:hover {
+  text-decoration: none;
+  color: #03dac6 !important;
+  background-color: #121212c0;
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 2px;
+  border-color: #03dac6;
+}
+
+ul.dropdown-menu {
+  color: #121212;
+  border: 2px solid #03dac6;
+  background-color: #12121263;
+  padding: 0;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #03dac6 !important;
+  border-color: #03dac6;
+}
+
+.header {
+  height: min-content;
   width: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
   top: 0;
-  position: sticky !important;
+  position: sticky;
+  z-index: 1;
+  background: rgb(18, 18, 18);
+  background: linear-gradient(
+    0deg,
+    rgba(18, 18, 18, 0.09707633053221287) 0%,
+    rgba(18, 18, 18, 0.7245273109243697) 22%,
+    rgba(18, 18, 18, 0.9822303921568627) 54%
+  );
 }
 </style>
