@@ -2,7 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
-import NotFound from "../views/NotFound.vue";
+import Map from "../views/Map.vue";
+import Wiki from "../views/Wiki.vue";
+import Error from "../views/Error.vue";
 
 Vue.use(VueRouter);
 
@@ -18,9 +20,18 @@ const routes = [
     component: About,
   },
   {
-    path: "/:catchAll(.*)",
-    name: "NotFound",
-    componenet: NotFound,
+    path: "/map",
+    name: "Map",
+    component: Map,
+  },
+  {
+    path: "/wiki",
+    name: "Wiki",
+    component: Wiki,
+  },
+  {
+    path: "*",
+    component: Error,
   },
 ];
 

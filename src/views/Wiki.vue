@@ -1,0 +1,3 @@
+<template>
+  <h1>Wiki</h1>
+</template>
