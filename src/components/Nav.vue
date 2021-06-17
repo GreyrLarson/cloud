@@ -1,8 +1,8 @@
 <template>
   <div class="header">
     <b-navbar toggleable="lg" type="dark" variant="faded">
-      <b-navbar-brand to="/" src="images/logo.png" alt="logo"
-        ><img id="logo" src="images/logo.png" alt="logo"
+      <b-navbar-brand to="/" src="/images/logo.png" alt="logo"
+        ><img id="logo" src="/images/logo.png" alt="logo"
       /></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -22,8 +22,18 @@
             <template #button-content>
               <i class="fas fa-user-circle"></i>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item to="/user/" + {{user.username}} v-if="isLoggedIn"
+              >Profile</b-dropdown-item
+            >
+            <b-dropdown-item v-on="logUserOut" v-if="isLoggedIn"
+              >Sign Out</b-dropdown-item
+            >
+            <b-dropdown-item to="/login" v-if="!isLoggedIn"
+              >Sign In</b-dropdown-item
+            >
+            <b-dropdown-item to="/register" v-if="!isLoggedIn"
+              >Register</b-dropdown-item
+            >
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -32,8 +42,28 @@
 </template>
 
 <script>
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "Nav",
+  methods: {
+    getUserDetails() {
+      let token = localStorage.getItem("jwt");
+      let decoded = VueJwtDecode.decode(token);
+      this.user = decoded;
+    },
+    logUserOut() {
+      localStorage.removeItem("jwt");
+      this.$router.push("/");
+    },
+  },
+  created() {
+    // this.getUserDetails();
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$root.$data.user !== null && this.$root.$data.user.token;
+    },
+  },
 };
 </script>
 

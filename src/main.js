@@ -5,11 +5,22 @@ import router from "./router";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+/*
+const base = axios.create({
+  baseURL: "http://69.160.84.31:3002"
+});
+*/
 
 Vue.config.productionTip = false;
+
+let data = {
+  user: null,
+};
+
 Vue.use(BootstrapVue);
 
 new Vue({
+  data,
   router,
   render: (h) => h(App),
 }).$mount("#app");
