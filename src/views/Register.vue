@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import swal from "sweetalert";
 export default {
   data() {
@@ -83,24 +84,31 @@ export default {
         return;
       }
       try {
-        let response = await this.$http.post("/user/register", this.register);
+        let response = await axios.post("/api/register", this.register);
         console.log(response);
         let token = response.data.token;
         if (token) {
           localStorage.setItem("jwt", token);
-          this.$router.push("/");
+          this.$root.$data.user = response.data.user;
           swal("Success", "Registration Was successful", "success");
+          this.$router.push({
+            path: "User",
+            params: { id: this.$root.$data.user.username },
+          });
         } else {
           swal("Error", "Something Went Wrong", "error");
+          this.$root.$data.user = null;
         }
       } catch (err) {
-        let error = err.response;
-        if (error == undefined) {
+        this.$root.$data.user = null;
+        if (err == undefined || err.response == undefined) {
           swal("Error", "Failed to connect. Please try again later.", "error");
-        } else if (error.status == 409) {
-          swal("Error", error.data.message, "error");
+        } else if (err.response.status == 500) {
+          swal("Error", "Server Error 500", "error");
+        } else if (err.response.status == 409) {
+          swal("Error", err.response.message, "error");
         } else {
-          swal("Error", error.data.err.message, "error");
+          swal("Error", err.response.data.message, "error");
         }
       }
     },

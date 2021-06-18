@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import swal from "sweetalert";
 export default {
   data() {
@@ -66,7 +67,7 @@ export default {
         return;
       }
       try {
-        let response = await this.$http.post("/user/login", this.login);
+        let response = await axios.post("/api/login", this.login);
         let token = response.data.token;
         localStorage.setItem("jwt", token);
         if (token) {
