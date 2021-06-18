@@ -73,7 +73,10 @@ export default {
         if (token) {
           swal("Success", "Login Successful", "success");
           this.$root.$data.user = response.data.user;
-          this.$router.push("/user/" + this.$root.$data.user.name);
+          this.$router.push({
+            path: "User",
+            params: { id: this.$root.$data.user.username },
+          });
         }
       } catch (err) {
         this.$root.$data.user = null;
