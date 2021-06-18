@@ -10,8 +10,8 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/about">About</b-nav-item>
-          <b-nav-item to="/map">Map</b-nav-item>
+          <b-nav-item to="/info">Info</b-nav-item>
+          <b-nav-item href="https://cloud.greyl.dev/dynmap/">Map</b-nav-item>
           <b-nav-item to="/wiki">Wiki</b-nav-item>
         </b-navbar-nav>
 
@@ -22,7 +22,11 @@
             <template #button-content>
               <i class="fas fa-user-circle"></i>
             </template>
-            <b-dropdown-item to="/user/" + {{user.username}} v-if="isLoggedIn"
+            <b-dropdown-item
+              to="/user/"
+              +
+              {{$root.$data.user.username}}
+              v-if="isLoggedIn"
               >Profile</b-dropdown-item
             >
             <b-dropdown-item v-on="logUserOut" v-if="isLoggedIn"
@@ -47,17 +51,18 @@ export default {
   name: "Nav",
   methods: {
     getUserDetails() {
+      if (this.$root.$data.user == null) {
+        return null;
+      }
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
-      this.user = decoded;
+      this.$root.$data.user = decoded;
     },
     logUserOut() {
       localStorage.removeItem("jwt");
+      this.$root.$data.user = null;
       this.$router.push("/");
     },
-  },
-  created() {
-    // this.getUserDetails();
   },
   computed: {
     isLoggedIn() {

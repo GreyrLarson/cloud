@@ -58,6 +58,10 @@ a {
   color: #2c3e50;
 }
 
+a.btn {
+  margin: 1em;
+}
+
 a.router-link-exact-active {
   color: #42b983;
 }

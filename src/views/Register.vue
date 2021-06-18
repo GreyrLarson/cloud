@@ -1,47 +1,60 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
-        <form
-          class="text-center border border-primary p-5"
-          style="margin-top: 70px; height: auto; padding-top: 100px !important"
-          @submit.prevent="registerUser"
-        >
-          <input
-            type="text"
-            id="name"
-            class="form-control mb-5"
-            placeholder="Username"
-            v-model="register.username"
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            class="form-control mb-5"
-            placeholder="Email"
-            v-model="register.email"
-            required
-          />
-          <!-- Password -->
-          <input
-            type="password"
-            id="password"
-            class="form-control mb-5"
-            placeholder="Password"
-            v-model="register.password"
-          />
-          <p>
-            Already have an account?
-            <router-link to="/login">click here</router-link>
-            <!-- Sign in button -->
-            <center>
-              <button class="btn btn-primary btn-block w-75 my-4" type="submit">
-                Register
-              </button>
-            </center>
-          </p>
-        </form>
+  <div class="register">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
+          <form
+            class="text-center border border-primary p-5"
+            style="
+              margin-top: 70px;
+              height: auto;
+              padding-top: 100px !important;
+            "
+            @submit.prevent="registerUser"
+          >
+            <h2 class="display-4">New User</h2>
+            <br />
+            <br />
+            <br />
+            <input
+              type="text"
+              id="name"
+              class="form-control mb-5"
+              placeholder="Username"
+              v-model="register.username"
+              required
+            />
+            <input
+              type="email"
+              id="email"
+              class="form-control mb-5"
+              placeholder="Email"
+              v-model="register.email"
+              required
+            />
+            <!-- Password -->
+            <input
+              type="password"
+              id="password"
+              class="form-control mb-5"
+              placeholder="Password"
+              v-model="register.password"
+            />
+            <p>
+              Already have an account?
+              <router-link to="/login">click here</router-link>
+              <!-- Sign in button -->
+              <center>
+                <button
+                  class="btn btn-primary btn-block w-75 my-4"
+                  type="submit"
+                >
+                  Register
+                </button>
+              </center>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -62,11 +75,11 @@ export default {
   methods: {
     async registerUser() {
       if (
-        !this.register.name ||
+        !this.register.username ||
         !this.register.email ||
         !this.register.password
       ) {
-        swal("Error", "Fields cannot be blank");
+        swal("Try Again!", "Fields cannot be blank");
         return;
       }
       try {
@@ -94,3 +107,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container {
+  margin-bottom: 1em;
+}
+</style>
