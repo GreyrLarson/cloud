@@ -10,6 +10,7 @@
         Grey Larson <i class="fab fa-github"></i>
       </a>
     </span>
+    <p>Hours Spent: 32</p>
   </footer>
 </template>
 

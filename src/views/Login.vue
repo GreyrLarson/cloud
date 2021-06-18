@@ -80,8 +80,21 @@ export default {
         }
       } catch (err) {
         this.$root.$data.user = null;
-        swal("Error", "Failed to connect. Please try again later.", "error");
-        console.log(err.response);
+        if (err == undefined || err.response == undefined) {
+          swal("Error", "Failed to connect. Please try again later.", "error");
+        } else if (err.response.status == 400) {
+          swal("Error", "Invalid Login.", "error");
+        } else if (err.response.status == 401) {
+          swal(
+            "Error",
+            "Login Failed. Check Authorization Credentials.",
+            "error"
+          );
+        } else {
+          swal("Error", "Register failed.", "error");
+          swal("Error", "Failed to connect. Please try again later.", "error");
+          console.log(err.response);
+        }
       }
     },
   },

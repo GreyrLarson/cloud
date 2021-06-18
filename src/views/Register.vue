@@ -106,9 +106,9 @@ export default {
         } else if (err.response.status == 500) {
           swal("Error", "Server Error 500", "error");
         } else if (err.response.status == 409) {
-          swal("Error", err.response.message, "error");
+          swal("Error", "Email already taken.", "error");
         } else {
-          swal("Error", err.response.data.message, "error");
+          swal("Error", "Register failed.", "error");
         }
       }
     },

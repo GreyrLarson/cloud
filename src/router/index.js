@@ -27,7 +27,7 @@ const routes = [
     component: Wiki,
   },
   {
-    path: "/user/:id",
+    path: "/user",
     component: User,
     name: "User",
     meta: {
