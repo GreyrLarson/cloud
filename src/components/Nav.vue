@@ -64,6 +64,9 @@ export default {
       this.$router.push("/");
     },
   },
+  created() {
+    this.getUserDetails();
+  },
   computed: {
     isLoggedIn() {
       return this.$root.$data.user !== null && this.$root.$data.user.token;

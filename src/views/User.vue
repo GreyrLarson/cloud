@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <h2>Name : {{ user.username }}</h2>
+    <h2>Welcome {{ user.username }}!</h2>
     <p>Email : {{ user.username }}</p>
   </div>
 </template>
@@ -18,10 +18,7 @@ export default {
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
       this.user = decoded;
-    },
-    logUserOut() {
-      localStorage.removeItem("jwt");
-      this.$router.push("/");
+      this.$root.$data.user = this.user;
     },
   },
   created() {
